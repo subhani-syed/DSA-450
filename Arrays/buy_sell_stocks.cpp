@@ -18,16 +18,34 @@ int main(){
     // }
 
     // Optimized Approach
-    int least = INT32_MAX;
-    int profit=0;
-    for(int i=0;i<n;i++){
-        if(arr[i]<least){
-            least = arr[i];
+    // int least = INT32_MAX;
+    // int profit=0;
+    // for(int i=0;i<n;i++){
+    //     if(arr[i]<least){
+    //         least = arr[i];
+    //     }
+    //     if(arr[i]-least>profit){
+    //         profit = arr[i] - least;
+    //     }
+    // }
+    // cout<<profit;
+
+    // Sliding Window Approach
+    int left = 0;
+    int right = 1;
+    int profit = 0;
+    while (right<n)
+    {
+        if(arr[right]>arr[left]){
+            profit = max(profit,arr[right]-arr[left]);
+            right++;    
+        }else{
+            left = right;
+            right = left+1;
         }
-        if(arr[i]-least>profit){
-            profit = arr[i] - least;
-        }
+        
     }
-    cout<<profit;
+    cout<<profit<<endl;
+
     return 0;
 }
