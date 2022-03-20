@@ -9,15 +9,16 @@ int main(){
     for(int i=0;i<n;i++){
         cin>>arr[i];
     }
-    int curSum = 0;
+    // Kadane's Algorithm
+    int currSum = 0;
     int maxSum = arr[0];
     for(int i=0;i<n;i++){
-        curSum = curSum+arr[i];
-        if(curSum>maxSum){
-            maxSum = curSum;
+        if(currSum<0){
+            currSum = 0;
         }
-        if(curSum<0){
-            curSum = 0;
+        currSum += arr[i];
+        if(currSum>maxSum){
+            maxSum = currSum;
         }
     }
     cout<<"max sum is "<<maxSum<<endl;
